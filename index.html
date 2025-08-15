@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – Galang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #11131a;
+      --muted: #5b6270;
+      --card: rgba(255, 255, 255, 0.6);
+      --border: rgba(0,0,0,0.08);
+      --grad1: #6a5af9;
+      --grad2: #b460f6;
+      --glow: rgba(106, 90, 249, 0.35);
+      --elev: rgba(0,0,0,.06);
+    }
+    .dark {
+      --bg: #0b0d12;
+      --text: #e8ecf3;
+      --muted: #9aa3b2;
+      --card: rgba(17, 19, 26, 0.55);
+      --border: rgba(255,255,255,0.12);
+      --grad1: #6a5af9;
+      --grad2: #20c997;
+      --glow: rgba(32, 201, 151, 0.25);
+      --elev: rgba(255,255,255,.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      transition: background .4s ease, color .2s ease;
+    }
+    .toggle-dark {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--card);
+      border: none;
+      border-radius: 25px;
+      width: 70px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--elev);
+      transition: background .3s ease;
+    }
+    .toggle-circle {
+      width: 27px;
+      height: 27px;
+      background: var(--grad1);
+      border-radius: 50%;
+      transition: transform .3s ease;
+    }
+    body.dark .toggle-circle {
+      transform: translateX(35px);
+      background: var(--grad2);
+    }
+    .hero {
+      text-align: center;
+      padding: 6rem 1.25rem 4rem;
+      color: white;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+    }
+    .title { font-size: clamp(2rem, 5vw, 3.5rem); margin: 1rem 0 .5rem; font-weight: 700; }
+    .subtitle { max-width: 720px; margin: 0 auto 2rem; }
+    .about-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.25rem;
+    }
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--grad1);
+      box-shadow: 0 0 25px var(--glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px var(--glow);
+    }
+    .about-text { max-width: 500px; }
+    .about-text h2 { margin-top: 0; font-size: 1.8rem; }
+    .about-text p { opacity: 0.85; line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.25rem; }
+    .section-title { text-align: center; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 2rem; }
+    .grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      border-radius: 18px; border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px var(--elev);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px var(--elev); }
+    .thumb { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .content { padding: 1.1rem 1rem 1.2rem; }
+    .content h3 { margin: .2rem 0 .35rem; font-size: 1.1rem; }
+    .skills {
+      text-align: center;
+      padding: 3rem 1.25rem;
+    }
+    .skill-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .skill-badge {
+      background: var(--card);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-weight: 500;
+      box-shadow: 0 4px 10px var(--elev);
+      transition: transform .2s ease;
+    }
+    .skill-badge:hover { transform: scale(1.05); }
+    .contact {
+      text-align: center;
+      padding: 3rem 1.25rem;
+      background: linear-gradient(135deg, var(--grad1), var(--grad2));
+      color: white;
+    }
+    .contact a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: white;
+      color: var(--grad1);
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .contact a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+    <div class="toggle-circle"></div>
+  </button>
+  <header class="hero">
+    <h1 class="title">Halo, Saya Galang</h1>
+    <p class="subtitle">Selamat datang di portfolio saya yang modern dan interaktif.</p>
+  </header>
+  <section class="about-inner">
+    <img src="profile.jpg" alt="Foto Profil" class="profile-pic">
+    <div class="about-text">
+      <h2>Tentang Saya</h2>
+      <p>Halo, saya Galang, seorang pengembang web yang fokus pada desain modern, responsif, dan interaktif. Saya suka menggabungkan estetika dengan performa agar website terasa hidup dan menyenangkan digunakan.</p>
+    </div>
+  </section>
+  <section class="skills">
+    <h2 class="section-title">Keahlian</h2>
+    <div class="skill-badges">
+      <div class="skill-badge">💻 HTML</div>
+      <div class="skill-badge">🎨 CSS</div>
+      <div class="skill-badge">⚡ JavaScript</div>
+      <div class="skill-badge">⚛️ React</div>
+      <div class="skill-badge">🖥️ Node.js</div>
+      <div class="skill-badge">🎯 UI/UX Design</div>
+    </div>
+  </section>
+  <section class="container">
+    <h2 class="section-title">Proyek Saya</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="proyek1.jpg" alt="Proyek 1" class="thumb">
+        <div class="content">
+          <h3>Proyek 1</h3>
+          <p>Deskripsi singkat proyek pertama.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="proyek2.jpg" alt="Proyek 2" class="thumb">
+        <div class="content">
+          <h3>Proyek 2</h3>
+          <p>Deskripsi singkat proyek kedua.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact">
+    <h2>Hubungi Saya</h2>
+    <p>Ingin bekerja sama atau bertanya? Klik tombol di bawah untuk chat langsung via WhatsApp.</p>
+    <a href="https://wa.me/6282124643404" target="_blank">💬 Chat via WhatsApp</a>
+  </section>
+  <footer>
+    © 2025 All Rights Reserved
+  </footer>
+  <script>
+    function toggleDarkMode(){
+      document.body.classList.toggle('dark');
+    }
+    feather.replace();
+  </script>
+</body>
+</html>
